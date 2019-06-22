@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--自定义验证码或者输入密码 圆角和颜色和边框-->
+    <declare-styleable name="PwCodeEditView">
+        <!-- 密码的数量 -->
+        <attr name="pw_number" format="integer" />
+        <!--背景颜色-->
+        <attr name="pw_bg_color" format="color" />
+        <!-- 如果pw_type  为circle z则是圆的的半径，只有circle时才有作用 -->
+        <attr name="pw_circle_radius" format="dimension" />
+        <!-- 文字大小-->
+        <attr name="pw_number_size" format="dimension" />
+        <!-- 密码圆点的颜色 或数字的颜色-->
+        <attr name="pw_circle_number_color" format="color" />
+        <!-- 边框的颜色 -->
+        <attr name="pw_border_color" format="color" />
+        <!-- 边框的圆角大小 -->
+        <attr name="pw_border_corner" format="dimension" />
+        <!--当边框的大小,-->
+        <attr name="pw_border_size" format="dimension" />
+        <!--下划线圆角-->
+        <attr name="pw_underline_conrner" format="dimension" />
+        <!--下划线线的大小-->
+        <attr name="pw_underline_size" format="dimension" />
+        <!--下划线颜色-->
+        <attr name="pw_underline_color" format="color" />
+       <!-- 下划线距离底部距离-->
+        <attr name="pw_underline_bottom" format="dimension"/>
+        <!--  输入后显示类型，是圆点还是数字-->
+        <attr name="pw_show_type">
+            <enum name="number" value="0" />
+            <enum name="circle" value="1" />
+        </attr>
+        <!--边框还是下划线-->
+        <attr name="pw_border_type">
+            <enum name="border" value="0" />
+            <enum name="underline" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>
