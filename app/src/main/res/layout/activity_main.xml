@@ -8,7 +8,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
-
+<com.mxq.pq.PwCodeEditView
+    android:layout_width="match_parent"
+    app:pw_border_corner="5dp"
+    app:pw_show_type="circle"
+    app:pw_border_type="border"
+    android:layout_height="wrap_content" />
 
 
 </LinearLayout>

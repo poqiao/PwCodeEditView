@@ -1,4 +1,4 @@
-package com.mxq.pw.widget;
+package com.mxq.pq;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,7 +14,6 @@ import android.util.TypedValue;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
-import com.mxq.yzpq.R;
 
 @SuppressLint("AppCompatCustomView")
 public class PwCodeEditView extends EditText {
