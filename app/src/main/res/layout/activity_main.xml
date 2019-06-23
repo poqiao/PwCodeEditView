@@ -8,11 +8,14 @@
     android:orientation="vertical"
 
     tools:context=".MainActivity">
+<Button
+    android:id="@+id/btn_1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
     <com.mxq.pq.PwCodeEditView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp" />
+        android:id="@+id/edit_pw"
+        android:layout_height="wrap_content" />
 
     <com.mxq.pq.PwCodeEditView
         android:layout_width="match_parent"
@@ -20,30 +23,27 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
         app:pw_border_type="underline"
-        app:pw_show_type="number"
-        />
+        app:pw_show_type="number" />
 
     <com.mxq.pq.PwCodeEditView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        app:pw_show_type="number"
-        app:pw_circle_number_color="#ff0000"
         app:pw_bg_color="#00fff2"
         app:pw_border_color="#003cff"
-        />
+        app:pw_circle_number_color="#ff0000"
+        app:pw_show_type="number" />
 
     <com.mxq.pq.PwCodeEditView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        app:pw_border_type="border"
-        app:pw_number="12"
         app:pw_bg_color="#ff0000"
+        app:pw_border_type="border"
         app:pw_circle_radius="10dp"
-        />
+        app:pw_number="12" />
 
 
     <com.mxq.pq.PwCodeEditView
@@ -51,30 +51,25 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        app:pw_border_type="border"
         app:pw_border_corner="15dp"
-        app:pw_number="4"
+        app:pw_border_type="border"
         app:pw_circle_radius="10dp"
-        app:pw_show_type="number"
+        app:pw_number="4"
         app:pw_number_size="100sp"
-        />
+        app:pw_show_type="number" />
 
     <com.mxq.pq.PwCodeEditView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        app:pw_show_type="circle"
-        app:pw_underline_size="10dp"
-        app:pw_border_type="underline"
-        app:pw_underline_conrner="5dp"
-        app:pw_circle_radius="100dp"
         app:pw_bg_color="#ff0000"
+        app:pw_border_type="underline"
+        app:pw_circle_radius="100dp"
+        app:pw_show_type="circle"
         app:pw_underline_color="#fff200"
-        />
-
-
-
+        app:pw_underline_conrner="5dp"
+        app:pw_underline_size="10dp" />
 
 
 </LinearLayout>

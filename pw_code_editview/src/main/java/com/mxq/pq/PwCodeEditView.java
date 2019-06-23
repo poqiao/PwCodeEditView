@@ -8,7 +8,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
+import android.text.Editable;
 import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -77,7 +79,28 @@ public class PwCodeEditView extends EditText {
         setCursorVisible (false);      // 不显示光标
         setLongClickable (false);      //取消长按事件，禁止弹出粘贴复制全选等选项
         setTextIsSelectable (false);//取消长按事件，禁止弹出粘贴复制全选等选项
+
+        addTextChangedListener (new TextWatcher () {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (listener != null && editable.length () == mNumber) {
+                    listener.finishInput (editable.toString ());
+                }
+            }
+        });
+
     }
+
 
     public PwCodeEditView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super (context, attrs, defStyleAttr);
@@ -146,11 +169,11 @@ public class PwCodeEditView extends EditText {
      * @param i 显示类型，0是边框，1是下划线
      */
     private float getCircleSize(int i) {
-            //对圆的大小做控制，当超过能显示的最大范围的时候，取能显示最大值
+        //对圆的大小做控制，当超过能显示的最大范围的时候，取能显示最大值
         if (i == 0 && mHeight - mBorderSize * 2 < (mCircleSize * 2)) {
-            mCircleSize = mHeight / 2 - mBorderSize-2;//减2是为了不贴顶部和底部，留出点空隙
+            mCircleSize = mHeight / 2 - mBorderSize - 2;//减2是为了不贴顶部和底部，留出点空隙
         } else if (i == 1 && (mHeight - mUnderLineSize - mUnderLineBottom < mCircleSize * 2)) {
-            mCircleSize = (mHeight - mUnderLineSize -2- mUnderLineBottom) / 2;//减2是为了不贴顶部和底部，留出点空隙
+            mCircleSize = (mHeight - mUnderLineSize - 2 - mUnderLineBottom) / 2;//减2是为了不贴顶部和底部，留出点空隙
         }
         return mCircleSize;
     }
@@ -161,8 +184,7 @@ public class PwCodeEditView extends EditText {
         //super.onMeasure (widthMeasureSpec, heightMeasureSpec);
         mWidth = MeasureSpec.getSize (widthMeasureSpec);
         //设置成每一个都是正方形
-
-        setPadding (0,0,0,0);
+        setPadding (0, 0, 0, 0);
         mHeight = mWidth / mNumber;
         setMeasuredDimension (mWidth, mHeight);
         if (mBorderType == 0) {
@@ -186,6 +208,34 @@ public class PwCodeEditView extends EditText {
      */
     private int dip2px(int dip) {
         return (int) TypedValue.applyDimension (TypedValue.COMPLEX_UNIT_DIP, dip, getResources ().getDisplayMetrics ());
+    }
+
+
+    public interface PwCodeEditListener {
+        void finishInput(String pwStr);
+    }
+
+    private PwCodeEditListener listener;
+
+    /**
+     * @param editListener 设置监听器
+     */
+    public void setPwCodeEditListener(PwCodeEditListener editListener) {
+        this.listener = editListener;
+    }
+
+    /**
+     * 获得内容
+     */
+    public String getEditText() {
+        return getText ().toString ().trim ();
+    }
+
+    /**
+     * 清空内容
+     */
+    public void clear() {
+        setText ("");
     }
 
 }
