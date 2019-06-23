@@ -7,7 +7,7 @@ implementation 'com.github.poqiao:PwCodeEditView:v1.0.1'
 <br>## 支持两种显示格式，数字和圆点</br>
 <br>默认模式:默认个数是6个，带边框，显示圆点，圆点和边框都为黑色</br>
 ```Java
-<com.mxq.pq.PwCodeEditView</br>
+<com.mxq.pq.PwCodeEditView
      android:layout_width="match_parent"
       android:layout_height="wrap_content" />
 ```
