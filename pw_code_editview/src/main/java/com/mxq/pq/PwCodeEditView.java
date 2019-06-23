@@ -10,6 +10,7 @@ import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.text.InputFilter;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -53,9 +54,9 @@ public class PwCodeEditView extends EditText {
         mBgColor = array.getColor (R.styleable.PwCodeEditView_pw_bg_color, Color.WHITE);//默认白色
         mCircleNumberColor = array.getColor (R.styleable.PwCodeEditView_pw_circle_number_color, Color.BLACK);//默认黑色
         mBorderColor = array.getColor (R.styleable.PwCodeEditView_pw_border_color, Color.BLACK);//默认黑色
-        mCircleSize = array.getDimensionPixelOffset (R.styleable.PwCodeEditView_pw_circle_radius, dip2px (6));//默认6dp
+        mCircleSize = array.getDimensionPixelOffset (R.styleable.PwCodeEditView_pw_circle_radius, dip2px (10));//默认10dp
         mBorderCornerSize = array.getDimensionPixelOffset (R.styleable.PwCodeEditView_pw_border_corner, 0);
-        mBorderSize = array.getDimensionPixelOffset (R.styleable.PwCodeEditView_pw_border_size, size);//默认为1dp
+        mBorderSize = array.getDimensionPixelOffset (R.styleable.PwCodeEditView_pw_border_size, size);//默认为2dp
         mUnderLineSize = array.getDimensionPixelSize (R.styleable.PwCodeEditView_pw_underline_size, size);
         mUnderCorner = array.getDimensionPixelOffset (R.styleable.PwCodeEditView_pw_underline_conrner, 0);
         mNumberSize = array.getDimensionPixelSize (R.styleable.PwCodeEditView_pw_number_size, sp2px (24));
@@ -72,8 +73,7 @@ public class PwCodeEditView extends EditText {
         mSpace = dip2px (5);//下划线之间的间隔
         setFilters (new InputFilter[]{new InputFilter.LengthFilter (mNumber)});//限制字符，防止到最大数后还能输入
         setBackgroundColor (0);
-
-        setInputType (EditorInfo.TYPE_CLASS_NUMBER);     // 输入模式是数字  
+        setInputType (EditorInfo.TYPE_CLASS_NUMBER);     // 输入模式是数字
         setCursorVisible (false);      // 不显示光标
         setLongClickable (false);      //取消长按事件，禁止弹出粘贴复制全选等选项
         setTextIsSelectable (false);//取消长按事件，禁止弹出粘贴复制全选等选项
@@ -111,13 +111,9 @@ public class PwCodeEditView extends EditText {
 
             }
         }
-
-
         mPaint.setStyle (Paint.Style.FILL);//实心
         mPaint.setColor (mCircleNumberColor);//设置圆的颜色
-
         if (mShowType == 1) {//画圆点
-
             for (int i = 0; i < getText ().length (); i++) {//获得输入的长度
                 canvas.drawCircle (mWidth * (i * 2 + 1) / (mNumber * 2),
                         mBorderType == 0 ? mHeight / 2 : (mHeight - mUnderLineSize - mUnderLineBottom) / 2,
@@ -127,24 +123,21 @@ public class PwCodeEditView extends EditText {
             Paint.FontMetrics font = mPaint.getFontMetrics ();//用来获取文字的正确位置
             float top = font.top;//为基线到字体上边框的距离,即上图中的top
             float bottom = font.bottom;//为基线到字体下边框的距离,即上图中的bottom
-            int baseLineY = (int) (rectF.centerY () - top / 2 - bottom / 2 - mUnderLineSize/2 -mUnderLineBottom);//基线中间点的y轴计算公式
+            int baseLineY = (int) (rectF.centerY () - top / 2 - bottom / 2 - mUnderLineSize / 2 - mUnderLineBottom);//基线中间点的y轴计算公式
             mPaint.setTextAlign (Paint.Align.CENTER);
-            mPaint.setTextSize (mBorderType==0?getTvSize (0):getTvSize (1));
+            mPaint.setTextSize (mBorderType == 0 ? getTvSize (0) : getTvSize (1));
             for (int i = 0; i < getText ().length (); i++) {
                 canvas.drawText (getText ().toString ().substring (i, i + 1), mWidth * (i * 2 + 1) / (mNumber * 2), baseLineY, mPaint);
             }
         }
-
     }
 
     private float getTvSize(int i) {
-        if (i==0&&(mHeight-mBorderSize*2<mNumberSize))
-        {
-                mNumberSize = mHeight-mBorderSize*2;
-        }
-        else if (i==1&&(mHeight-mUnderLineBottom-mUnderLineSize<mNumberSize))
-        {
-            mNumberSize = mHeight-mUnderLineBottom-mUnderLineSize;
+        //对文字的大小做控制，当超过能显示的最大范围的时候，取能显示最大值
+        if (i == 0 && (mHeight - mBorderSize * 2 < mNumberSize)) {
+            mNumberSize = mHeight - mBorderSize * 2;
+        } else if (i == 1 && (mHeight - mUnderLineBottom - mUnderLineSize < mNumberSize)) {
+            mNumberSize = mHeight - mUnderLineBottom - mUnderLineSize;
         }
         return mNumberSize;
     }
@@ -153,11 +146,11 @@ public class PwCodeEditView extends EditText {
      * @param i 显示类型，0是边框，1是下划线
      */
     private float getCircleSize(int i) {
-
+            //对圆的大小做控制，当超过能显示的最大范围的时候，取能显示最大值
         if (i == 0 && mHeight - mBorderSize * 2 < (mCircleSize * 2)) {
-            mCircleSize = mHeight / 2 - mBorderSize;
+            mCircleSize = mHeight / 2 - mBorderSize-2;//减2是为了不贴顶部和底部，留出点空隙
         } else if (i == 1 && (mHeight - mUnderLineSize - mUnderLineBottom < mCircleSize * 2)) {
-            mCircleSize = (mHeight - mUnderLineSize - mUnderLineBottom) / 2;
+            mCircleSize = (mHeight - mUnderLineSize -2- mUnderLineBottom) / 2;//减2是为了不贴顶部和底部，留出点空隙
         }
         return mCircleSize;
     }
@@ -165,16 +158,19 @@ public class PwCodeEditView extends EditText {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure (widthMeasureSpec, heightMeasureSpec);
+        //super.onMeasure (widthMeasureSpec, heightMeasureSpec);
         mWidth = MeasureSpec.getSize (widthMeasureSpec);
-        mHeight = mWidth / 6;//设置成每一个都是正方形
-        setMeasuredDimension (widthMeasureSpec, mHeight);
+        //设置成每一个都是正方形
+
+        setPadding (0,0,0,0);
+        mHeight = mWidth / mNumber;
+        setMeasuredDimension (mWidth, mHeight);
         if (mBorderType == 0) {
             rectF = new RectF (mBorderSize / 2, mBorderSize / 2, mWidth - mBorderSize / 2, mHeight - mBorderSize / 2);//mBorderSize / 2是为了防止画出界,导致边框四边大小只有竖线的一半
         } else {
             rectF = new RectF (0, 0, mWidth, mHeight);
-
         }
+
 
     }
 
