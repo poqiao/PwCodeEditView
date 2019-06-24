@@ -5,8 +5,8 @@
 ```Java
 implementation 'com.github.poqiao:PwCodeEditView:v1.0.1'
 ```
-<br>## 支持两种显示格式，数字和圆点</br>
-默认模式:默认个数是6个，带边框，显示圆点，圆点和边框都为黑色
+
+##### 支持两种显示格式，数字和圆点,默认模式:默认个数是6个，带边框，显示圆点，圆点和边框都为黑色
 ```Java
 <com.mxq.pq.PwCodeEditView
      android:layout_width="match_parent"
