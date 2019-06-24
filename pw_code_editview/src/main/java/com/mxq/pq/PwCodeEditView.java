@@ -59,7 +59,7 @@ public class PwCodeEditView extends EditText {
         mCircleSize = array.getDimensionPixelOffset (R.styleable.PwCodeEditView_pw_circle_radius, dip2px (10));//默认10dp
         mBorderCornerSize = array.getDimensionPixelOffset (R.styleable.PwCodeEditView_pw_border_corner, 0);
         mBorderSize = array.getDimensionPixelOffset (R.styleable.PwCodeEditView_pw_border_size, size);//默认为2dp
-        mUnderLineSize = array.getDimensionPixelSize (R.styleable.PwCodeEditView_pw_underline_size, size);
+        mUnderLineSize = array.getDimensionPixelOffset (R.styleable.PwCodeEditView_pw_underline_size, size);
         mUnderCorner = array.getDimensionPixelOffset (R.styleable.PwCodeEditView_pw_underline_conrner, 0);
         mNumberSize = array.getDimensionPixelSize (R.styleable.PwCodeEditView_pw_number_size, sp2px (24));
         mBorderType = array.getInt (R.styleable.PwCodeEditView_pw_border_type, 0);//默认有边框
@@ -238,4 +238,8 @@ public class PwCodeEditView extends EditText {
         setText ("");
     }
 
+
+    public void setNumber(int number) {
+        this.mNumber = number;
+    }
 }
