@@ -143,10 +143,12 @@ public class PwCodeEditView extends EditText {
                         mBorderType == 0 ? getCircleSize (0) : getCircleSize (1), mPaint);
             }
         } else {//画数字
-            Paint.FontMetrics font = mPaint.getFontMetrics ();//用来获取文字的正确位置
-            float top = font.top;//为基线到字体上边框的距离,即上图中的top
-            float bottom = font.bottom;//为基线到字体下边框的距离,即上图中的bottom
-            int baseLineY = (int) (rectF.centerY () - top / 2 - bottom / 2 - mUnderLineSize / 2 - mUnderLineBottom);//基线中间点的y轴计算公式
+            int baseLineY;
+            if (mBorderType == 0) {
+                baseLineY = (int) (mHeight / 2 - (mPaint.descent () + mPaint.ascent ()) / 2);//基线中间点的y轴计算公式
+            } else {
+                baseLineY = (int) (mHeight / 2 - (mPaint.descent () + mPaint.ascent ()) / 2 - mUnderLineSize / 2 - mUnderLineBottom);//基线中间点的y轴计算公式
+            }
             mPaint.setTextAlign (Paint.Align.CENTER);
             mPaint.setTextSize (mBorderType == 0 ? getTvSize (0) : getTvSize (1));
             for (int i = 0; i < getText ().length (); i++) {
