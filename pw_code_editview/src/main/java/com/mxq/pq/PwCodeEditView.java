@@ -130,7 +130,7 @@ public class PwCodeEditView extends EditText {
                 canvas.drawRoundRect (mWidth * i / mNumber + mSpace,
                         mHeight - mUnderLineSize - mUnderLineBottom,
                         mWidth * (i + 1) / mNumber - mSpace,
-                        mHeight - mUnderLineBottom, mUnderCorner, mUnderCorner, mPaint);//是否要在最低，自己改，默认是线的一半
+                        mHeight - mUnderLineBottom, mUnderCorner, mUnderCorner, mPaint);
 
             }
         }
