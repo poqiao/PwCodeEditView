@@ -1,4 +1,5 @@
 # PwCodeEditView
+### 密码，验证码
 ![image](https://github.com/poqiao/PwCodeEditView/blob/master/app/src/main/assets/sssssss3.gif)<br>
 ### 引入下面依赖</br>
 ```Java
