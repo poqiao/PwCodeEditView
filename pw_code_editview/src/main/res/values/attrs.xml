@@ -19,7 +19,7 @@
         <!--当边框的大小,-->
         <attr name="pw_border_size" format="dimension" />
         <!--下划线圆角-->
-        <attr name="pw_underline_conrner" format="dimension" />
+        <attr name="pw_underline_corner" format="dimension" />
         <!--下划线线的大小-->
         <attr name="pw_underline_size" format="dimension" />
         <!--下划线颜色-->
