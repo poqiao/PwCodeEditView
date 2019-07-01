@@ -3,7 +3,7 @@
 ![image](https://github.com/poqiao/PwCodeEditView/blob/master/app/src/main/assets/sssssss3.gif)<br>
 ### 引入下面依赖</br>
 ```Java
-implementation 'com.github.poqiao:PwCodeEditView:1.0.4'
+implementation 'com.github.poqiao:PwCodeEditView:1.0.5'
 ```
 
 ##### 支持两种显示格式，数字和圆点,默认模式:默认个数是6个，带边框，显示圆点，圆点和边框都为黑色
