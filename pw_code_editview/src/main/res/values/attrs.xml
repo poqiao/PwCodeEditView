@@ -5,15 +5,15 @@
         <!-- 密码的数量 -->
         <attr name="pw_number" format="integer" />
         <!--背景颜色-->
-        <attr name="pw_bg_color" format="color" />
+        <attr name="pw_bg_color" format="color|reference" />
         <!-- 如果pw_type  为circle z则是圆的的半径，只有circle时才有作用 -->
         <attr name="pw_circle_radius" format="dimension" />
         <!-- 文字大小-->
         <attr name="pw_number_size" format="dimension" />
         <!-- 密码圆点的颜色 或数字的颜色-->
-        <attr name="pw_circle_number_color" format="color" />
+        <attr name="pw_circle_number_color" format="color|reference" />
         <!-- 边框的颜色 -->
-        <attr name="pw_border_color" format="color" />
+        <attr name="pw_border_color" format="color|reference" />
         <!-- 边框的圆角大小 -->
         <attr name="pw_border_corner" format="dimension" />
         <!--当边框的大小,-->
@@ -23,7 +23,7 @@
         <!--下划线线的大小-->
         <attr name="pw_underline_size" format="dimension" />
         <!--下划线颜色-->
-        <attr name="pw_underline_color" format="color" />
+        <attr name="pw_underline_color" format="color|reference" />
        <!-- 下划线距离底部距离-->
         <attr name="pw_underline_bottom" format="dimension"/>
         <!--  输入后显示类型，是圆点还是数字-->
